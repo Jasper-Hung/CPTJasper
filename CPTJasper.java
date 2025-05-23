@@ -11,7 +11,7 @@ public class CPTJasper{
 		con.println("What is the number?: ");
 		intNum = con.readInt();
 		
-		con.println("What is the number you want to add to the original?");
+		con.println("What is the number you want to add to the original?:");
 		intAdd = con.readInt();
 		
 		intNum = intNum + intAdd;
