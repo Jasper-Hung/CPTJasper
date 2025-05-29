@@ -89,7 +89,8 @@ public class CPTJasper{
 		
 	}	
 	public static void PlayGame(Console con){
-		
+		String strName; 
+		String strGameChoice;
 		
 	}	
 		
