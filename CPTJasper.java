@@ -12,7 +12,7 @@ public class CPTJasper{
 		BufferedImage StartImage = con.loadImage("logo.png");
 		con.setDrawFont(new Font("SansSerif", Font.BOLD, 40));
 		
-		for(int intLoad = 0; intLoad < 5; intLoad++){
+		for(int intLoad = 0; intLoad < 3; intLoad++){
 			//FAKE Loading Screen
 			int intSleepMS = 400;
 			
@@ -53,6 +53,8 @@ public class CPTJasper{
 		con.println("Quit (q)");
 		char chrMenuInput = con.getChar();
 		if(chrMenuInput == 'p' || chrMenuInput == 'P'){
+			//Goes to starting game screen
+			PlayGame(con);
 			
 		}else if(chrMenuInput == 'v' || chrMenuInput == 'V'){
 	
@@ -89,8 +91,42 @@ public class CPTJasper{
 		
 	}	
 	public static void PlayGame(Console con){
+		//Starting Game Screen
+		con.clear();
+		
+		//Variables
+		
 		String strName; 
 		String strGameChoice;
+		String strFile;
+		String strWord;
+		
+		con.println("What is your name?: ");
+		strName = con.readLine();
+		
+		TextInputFile Masterfile = new TextInputFile("themes.txt");
+		
+		con.println("Pick what topic you want to play:");
+		
+		while(Masterfile.eof() == false){
+			//Printing all files from masterlist
+			strFile = Masterfile.readLine();
+			con.println(strFile);
+		}	
+		strGameChoice = con.readLine();
+		
+		Masterfile.close();
+		
+		con.clear();
+		
+		//Opening Game Choice
+		TextInputFile GameFile = new TextInputFile(strGameChoice);
+		
+		while(GameFile.eof() == false){
+			strWord = GameFile.readLine();
+			con.println(strWord);
+			
+		}	
 		
 	}	
 		
