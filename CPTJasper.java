@@ -1,3 +1,10 @@
+//----------------------------------------------------------------------
+// Name: 		CPTJasper
+// Purpose: 	Create a Guess the Word Game
+// Author:		Hung J.
+// Created: 	May 23, 2025
+//----------------------------------------------------------------------
+
 import arc.*;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -45,15 +52,23 @@ public class CPTJasper{
 	public static void MainMenu(Console con){
 		//Main Menu Display
 		con.clear();
-		con.println("Main Menu");
-		con.println("Play Game (p)");
-		con.println("View Leaderboard (v)");
-		con.println("Add Theme (a)");
-		con.println("Help (h)");
-		con.println("Quit (q)");
+		
+		con.setDrawColor(Color.WHITE);
+		con.drawString("Main Menu", 400, 100);
+		con.drawString("Play Game(p)", 400, 150);
+		con.drawString("View Leaderboard(v)", 400, 200);
+		con.drawString("Add Theme (a)", 400, 250);
+		con.drawString("Help (h)", 400, 300);
+		con.drawString("Quit (q)", 400, 350);
+		con.repaint();
+	
+	
 		char chrMenuInput = con.getChar();
 		if(chrMenuInput == 'p' || chrMenuInput == 'P'){
 			//Goes to starting game screen
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
+			con.clear();
 			PlayGame(con);
 			
 		}else if(chrMenuInput == 'v' || chrMenuInput == 'V'){
@@ -61,6 +76,8 @@ public class CPTJasper{
 		}else if(chrMenuInput == 'a' || chrMenuInput == 'A'){
 			
 		}else if(chrMenuInput == 'h' || chrMenuInput == 'H'){	
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
 			con.clear();
 			//Help Menu
 			con.print("Guess the word is a game where you are given a word and you have to keep");
@@ -69,6 +86,8 @@ public class CPTJasper{
 			con.println("\nand every time you guess wrong, you lose a point.");
 			con.println("At zero points, you lose the game, if you guess the word before that, you win.");
 			con.println("GOOD LUCK");
+			con.println("(There's a secret in the main menu)");
+			con.println("(Find the hidden cheat username)");
 			con.println("(Press m to go back to main menu)");
 			chrMenuInput = con.getChar();
 			if(chrMenuInput == 'm' || chrMenuInput == 'M'){
@@ -79,6 +98,8 @@ public class CPTJasper{
 			con.closeConsole();
 		}else if(chrMenuInput == 'x' || chrMenuInput == 'X'){	
 			//SECRET 
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
 			con.clear();
 			con.println("Why did the electric car feel discriminated against?");
 			con.println("Because the rules weren't current.");
@@ -121,11 +142,69 @@ public class CPTJasper{
 		
 		//Opening Game Choice
 		TextInputFile GameFile = new TextInputFile(strGameChoice);
+		int intWordCount = 0;
 		
 		while(GameFile.eof() == false){
-			strWord = GameFile.readLine();
-			con.println(strWord);
 			
+			strWord = GameFile.readLine();
+			System.out.println(strWord);
+			intWordCount++;
+			System.out.println(intWordCount);
+			
+		}	
+		GameFile.close();
+		String strWords [][];
+		strWords = new String [intWordCount][2];
+		//Column 0 is words
+		//Column 1 is random integers from 1 to 100
+		
+		GameFile = new TextInputFile(strGameChoice);
+		
+		int intCount;
+		System.out.println("\n\nTRANSITION\n\n");
+		for(intCount = 0; intCount < intWordCount; intCount++){
+			//Giving each word a random integer from 1 to 100
+			strWords[intCount][0] = GameFile.readLine();
+			int intRand;
+			intRand = (int)(Math.random()*100+1);
+			strWords[intCount][1] = intRand + ""; //Forces integer to be string
+			System.out.println(strWords[intCount][0]);
+			System.out.println(strWords[intCount][1]);
+		}
+		
+		//Sorting array
+		int intCount2;
+		int intCount3;
+		String strWordTemp;
+		String strIntTemp;
+		
+		System.out.println("\n\nTRANSITION\n\n");
+		
+		for(intCount2 = 0; intCount2 < intWordCount - 1; intCount2++){
+			for(intCount3 = 0; intCount3 < intWordCount - 1 ; intCount3++){
+				//Converting string to integer to compare
+				if(Integer.parseInt(strWords[intCount3][1]) > Integer.parseInt(strWords[intCount3+1][1])){
+					System.out.println("SWAPPING");
+					//Swapping word
+					strWordTemp = strWords[intCount3][0];
+					strWords[intCount3][0] = strWords[intCount3+1][0];
+					strWords[intCount3+1][0] = strWordTemp;
+					//Swapping integer
+					strIntTemp = strWords[intCount3][1];
+					strWords[intCount3][1] = strWords[intCount3+1][1];
+					strWords[intCount3+1][1] = strIntTemp;
+					
+				}
+			}	
+		}		
+		
+		int intCount4;
+		
+		System.out.println("\n\nTRANSITION\n\n");
+		
+		for(intCount4 = 0; intCount4 < intWordCount; intCount4++){
+			System.out.println(strWords[intCount4][0]);
+			System.out.println(strWords[intCount4][1]);	
 		}	
 		
 	}	
