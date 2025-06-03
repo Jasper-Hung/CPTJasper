@@ -205,8 +205,70 @@ public class CPTJasper{
 		for(intCount4 = 0; intCount4 < intWordCount; intCount4++){
 			System.out.println(strWords[intCount4][0]);
 			System.out.println(strWords[intCount4][1]);	
-		}	
+		}
+		GameFile.close();
 		
+		int intGameCount;
+		int intPoints;
+		int intCount5;
+		String strLetter = "";
+		String strDisplayWord = "";
+		char chrGuess[];
+		char chrGuessLetter;
+		char chrDisplayWord[];
+		
+		//Time for the actual game
+		for(intGameCount = 0; intGameCount < intWordCount; intGameCount++){
+			intPoints = 0;
+			strDisplayWord = "";
+			strWord = strWords[intGameCount][0];
+			System.out.println("\n"+strWord+"\n");
+			
+			//Make displayword have underscore for letters and spaces for spaces
+			for (intCount5 = 0; intCount5 < strWord.length(); intCount5++) {
+				strLetter = strWord.substring(intCount5, intCount5+1);
+				if(strLetter.equalsIgnoreCase(" ")){
+					strDisplayWord = strDisplayWord + " ";
+				}else{
+					//Amount of points = amount of letters
+					strDisplayWord = strDisplayWord + "_";
+					intPoints = intPoints + 1;
+				}		
+			}
+			chrGuess = new char[strWord.length()];
+			
+			System.out.println(intPoints);
+			System.out.println(strDisplayWord);
+			chrDisplayWord = new char[strWord.length()];
+			
+			int intCount6;
+			
+			//Make character array match all characters of the word
+			//Make display arraw match all characters of display word
+			for(intCount6 = 0; intCount6 < strWord.length(); intCount6++){
+				chrGuess[intCount6] = strWord.charAt(intCount6);
+				chrDisplayWord[intCount6] = strDisplayWord.charAt(intCount6);
+				System.out.println(chrGuess[intCount6]);
+				System.out.println(chrDisplayWord[intCount6]);
+			
+			}
+			
+			System.out.println(intPoints);
+			System.out.println(strDisplayWord);
+			
+			while(intPoints > 0){
+				con.println(strDisplayWord);
+				con.println("You have " + intPoints + " points");
+				con.println("Guess a letter");
+				chrGuessLetter = con.getChar();
+			}
+			
+			
+			
+			
+			
+		}	
+			
 	}	
 		
 }
