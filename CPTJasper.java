@@ -110,7 +110,7 @@ public class CPTJasper{
 			}	
 		}
 		
-	}	
+	}
 	public static void PlayGame(Console con){
 		//Starting Game Screen
 		con.clear();
@@ -208,6 +208,23 @@ public class CPTJasper{
 		}
 		GameFile.close();
 		
+		int intLOWERCASE;
+		String strLowercase;
+		
+		//Converting all words to only lowercase
+		for(intLOWERCASE = 0; intLOWERCASE < intWordCount; intLOWERCASE++){
+			
+			strLowercase = strWords[intLOWERCASE][0];
+			strWords[intLOWERCASE][0] = strLowercase.toLowerCase();
+			
+			System.out.println("\n\nTRANSITION\n\n");
+			System.out.println(strWords[intLOWERCASE][0]);
+		}	
+	
+		
+		
+		
+		
 		int intGameCount;
 		int intPoints;
 		int intCount5;
@@ -250,17 +267,38 @@ public class CPTJasper{
 				chrDisplayWord[intCount6] = strDisplayWord.charAt(intCount6);
 				System.out.println(chrGuess[intCount6]);
 				System.out.println(chrDisplayWord[intCount6]);
-			
+					
 			}
 			
 			System.out.println(intPoints);
 			System.out.println(strDisplayWord);
 			
+			int intCount7;
+			int intCount8;
 			while(intPoints > 0){
+				for(intCount7 = 0; intCount7 < strWord.length(); intCount7++){
 				con.println(strDisplayWord);
 				con.println("You have " + intPoints + " points");
-				con.println("Guess a letter");
+				con.println("Guess a letter (in lowercase)");
+				
 				chrGuessLetter = con.getChar();
+				System.out.println(chrGuessLetter);
+					//Checks all letters in the string to see if it matches with the guess
+					for(intCount8 = 0; intCount8 < strWord.length(); intCount8++){
+						if(chrGuess[intCount8] == chrGuessLetter){
+							//Changing display word to have the correct letter
+							String strModify;
+							chrDisplayWord[intCount8] = chrGuessLetter;
+							//Replacing specific string character with guess character
+							strModify = strDisplayWord.substring(0, intCount7) + chrGuessLetter + strDisplayWord.substring(intCount7+1);
+							strDisplayWord = strModify;	
+							intPoints++;
+					}
+				}
+				intPoints--;
+				
+				}
+				
 			}
 			
 			
@@ -270,5 +308,5 @@ public class CPTJasper{
 		}	
 			
 	}	
-		
+			
 }
