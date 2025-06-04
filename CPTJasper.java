@@ -275,14 +275,23 @@ public class CPTJasper{
 			
 			int intCount7;
 			int intCount8;
+			int intCount9;
+			String strLetterUnderscore;
+			boolean blnRight;
+			boolean blnWin;
+			int intWinCount = 0; 
+			char chrAgain;
 			while(intPoints > 0){
 				for(intCount7 = 0; intCount7 < strWord.length(); intCount7++){
-				con.println(strDisplayWord);
-				con.println("You have " + intPoints + " points");
-				con.println("Guess a letter (in lowercase)");
+					con.clear();
+					blnRight = false;
+					blnWin = true;	
+					con.println(strDisplayWord);
+					con.println("You have " + intPoints + " points");
+					con.println("Guess a letter (in lowercase)");
 				
-				chrGuessLetter = con.getChar();
-				System.out.println(chrGuessLetter);
+					chrGuessLetter = con.getChar();
+					System.out.println(chrGuessLetter);
 					//Checks all letters in the string to see if it matches with the guess
 					for(intCount8 = 0; intCount8 < strWord.length(); intCount8++){
 						if(chrGuess[intCount8] == chrGuessLetter){
@@ -292,19 +301,40 @@ public class CPTJasper{
 							//Replacing specific string character with guess character
 							strModify = strDisplayWord.substring(0, intCount8) + chrGuessLetter + strDisplayWord.substring(intCount8+1);
 							strDisplayWord = strModify;	
-							intPoints++;
+							//Makes it so when guess is right, player doesn't loses points
+							blnRight = true;
+						}
 					}
+					if(blnRight == false){
+						intPoints--;
+					}
+					//Checking if win
+					for(intCount9 = 0; intCount9 < strWord.length(); intCount9++){
+						strLetterUnderscore = strDisplayWord.substring(intCount9, intCount9+1);
+						if(strLetterUnderscore.equalsIgnoreCase("_")){
+							blnWin = false;
+						}	
+					}					
+					System.out.println("\n\nTRANSITION\n\n");
+					System.out.println("Win: " + blnWin);
+					
+					if(blnWin == true){
+						intWinCount++;
+						System.out.println("WinCount: " + intWinCount);
+						con.clear();
+						con.println(strDisplayWord);
+						con.println("You Win!!!!!!!!");
+						con.println("Do you want to play again?");
+						con.println("Type anything for yes");
+						con.println("Type m for no (return back to main menu)");
+						chrAgain = con.getChar();
+						if(chrAgain == 'm' || chrAgain == 'M'){
+							MainMenu(con);
+						}	
+					}	
+						
 				}
-				intPoints--;
-				
-				}
-				
 			}
-			
-			
-			
-			
-			
 		}	
 			
 	}	
