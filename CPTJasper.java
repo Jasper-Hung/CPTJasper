@@ -290,7 +290,7 @@ public class CPTJasper{
 							String strModify;
 							chrDisplayWord[intCount8] = chrGuessLetter;
 							//Replacing specific string character with guess character
-							strModify = strDisplayWord.substring(0, intCount7) + chrGuessLetter + strDisplayWord.substring(intCount7+1);
+							strModify = strDisplayWord.substring(0, intCount8) + chrGuessLetter + strDisplayWord.substring(intCount8+1);
 							strDisplayWord = strModify;	
 							intPoints++;
 					}
