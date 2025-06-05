@@ -74,7 +74,11 @@ public class CPTJasper{
 		}else if(chrMenuInput == 'v' || chrMenuInput == 'V'){
 	
 		}else if(chrMenuInput == 'a' || chrMenuInput == 'A'){
-			
+			//Goes to add theme screen
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
+			con.clear();
+			AddTheme(con);
 		}else if(chrMenuInput == 'h' || chrMenuInput == 'H'){	
 			con.setDrawColor(Color.BLACK);
 			con.fillRect(0,0,1280,720);
