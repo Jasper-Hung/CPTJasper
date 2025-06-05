@@ -227,6 +227,9 @@ public class CPTJasper{
 		
 		int intGameCount;
 		int intPoints;
+		//Dummy points so the while loop can work properly inside the actual game
+		int intFakePoints;
+		int intWinCount = 0;
 		int intCount5;
 		String strLetter = "";
 		String strDisplayWord = "";
@@ -234,9 +237,10 @@ public class CPTJasper{
 		char chrGuessLetter;
 		char chrDisplayWord[];
 		
-		//Time for the actual game
+		//Setting up word for game
 		for(intGameCount = 0; intGameCount < intWordCount; intGameCount++){
 			intPoints = 0;
+			intFakePoints = 0;
 			strDisplayWord = "";
 			strWord = strWords[intGameCount][0];
 			System.out.println("\n"+strWord+"\n");
@@ -250,6 +254,7 @@ public class CPTJasper{
 					//Amount of points = amount of letters
 					strDisplayWord = strDisplayWord + "_";
 					intPoints = intPoints + 1;
+					intFakePoints = intFakePoints + 1;
 				}		
 			}
 			chrGuess = new char[strWord.length()];
@@ -279,9 +284,10 @@ public class CPTJasper{
 			String strLetterUnderscore;
 			boolean blnRight;
 			boolean blnWin;
-			int intWinCount = 0; 
 			char chrAgain;
-			while(intPoints > 0){
+			
+			//Actual Gameplay
+			while(intFakePoints > 0){
 				for(intCount7 = 0; intCount7 < strWord.length(); intCount7++){
 					con.clear();
 					blnRight = false;
@@ -307,6 +313,7 @@ public class CPTJasper{
 					}
 					if(blnRight == false){
 						intPoints--;
+						intFakePoints--;
 					}
 					//Checking if win
 					for(intCount9 = 0; intCount9 < strWord.length(); intCount9++){
@@ -318,6 +325,9 @@ public class CPTJasper{
 					System.out.println("\n\nTRANSITION\n\n");
 					System.out.println("Win: " + blnWin);
 					
+					TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
+					
+					//This happens when you win
 					if(blnWin == true){
 						intWinCount++;
 						System.out.println("WinCount: " + intWinCount);
@@ -330,9 +340,27 @@ public class CPTJasper{
 						chrAgain = con.getChar();
 						if(chrAgain == 'm' || chrAgain == 'M'){
 							MainMenu(con);
-						}	
-					}	
-						
+						}else{
+							intFakePoints = 0;
+						}		
+					}
+					//This happens when you lose	
+					if(intPoints == 0){
+						con.clear();
+						con.println("You have just reached 0 points.");
+						con.println("..................");
+						con.println("YOU LOST!");
+						con.println("Do you want to play again?");
+						con.println("Type anything for yes");
+						con.println("Type m for no (return back to main menu)");
+						chrAgain = con.getChar();
+						if(chrAgain == 'm' || chrAgain == 'M'){
+							MainMenu(con);
+						}else{
+							intFakePoints = 0;
+						}		
+							
+					}		
 				}
 			}
 		}	
