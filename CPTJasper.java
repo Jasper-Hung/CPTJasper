@@ -131,7 +131,7 @@ public class CPTJasper{
 		
 		TextInputFile Masterfile = new TextInputFile("themes.txt");
 		
-		con.println("Pick what topic you want to play:");
+		con.println("Pick what topic you want to play (Case-sensitive):");
 		
 		while(Masterfile.eof() == false){
 			//Printing all files from masterlist
