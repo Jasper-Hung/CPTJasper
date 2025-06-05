@@ -238,7 +238,16 @@ public class CPTJasper{
 		char chrDisplayWord[];
 		
 		//Setting up word for game
-		for(intGameCount = 0; intGameCount < intWordCount; intGameCount++){
+		for(intGameCount = 0; intGameCount <= intWordCount; intGameCount++){
+			//If user reaches the end of the word list
+			if(intGameCount == intWordCount){
+				con.clear();
+				con.println("CONGRATULATIONS");
+				con.println("You've reached the end of the word list.");	
+				con.println("Returning back to main menu...");
+				con.sleep(8000);
+				MainMenu(con);
+			}	
 			intPoints = 0;
 			intFakePoints = 0;
 			strDisplayWord = "";
@@ -280,7 +289,6 @@ public class CPTJasper{
 			
 			int intCount7;
 			int intCount8;
-			int intCount9;
 			String strLetterUnderscore;
 			boolean blnRight;
 			boolean blnWin;
@@ -288,83 +296,105 @@ public class CPTJasper{
 			
 			//Actual Gameplay
 			while(intFakePoints > 0){
-				for(intCount7 = 0; intCount7 < strWord.length(); intCount7++){
-					con.clear();
-					blnRight = false;
-					blnWin = true;	
-					con.println(strDisplayWord);
-					con.println("You have " + intPoints + " points");
-					con.println("Guess a letter (in lowercase)");
+				con.clear();
+				blnRight = false;
+				blnWin = true;	
+				con.println(strDisplayWord);
+				con.println("You have " + intPoints + " points");
+				con.println("Guess a letter (in lowercase)");
 				
-					chrGuessLetter = con.getChar();
-					System.out.println(chrGuessLetter);
-					//Checks all letters in the string to see if it matches with the guess
-					for(intCount8 = 0; intCount8 < strWord.length(); intCount8++){
-						if(chrGuess[intCount8] == chrGuessLetter){
-							//Changing display word to have the correct letter
-							String strModify;
-							chrDisplayWord[intCount8] = chrGuessLetter;
-							//Replacing specific string character with guess character
-							strModify = strDisplayWord.substring(0, intCount8) + chrGuessLetter + strDisplayWord.substring(intCount8+1);
-							strDisplayWord = strModify;	
-							//Makes it so when guess is right, player doesn't loses points
-							blnRight = true;
-						}
+				chrGuessLetter = con.getChar();
+				System.out.println(chrGuessLetter);
+				//Checks all letters in the string to see if it matches with the guess
+				for(intCount7 = 0; intCount7 < strWord.length(); intCount7++){
+					if(chrGuess[intCount7] == chrGuessLetter){
+						//Changing display word to have the correct letter
+						String strModify;
+						chrDisplayWord[intCount7] = chrGuessLetter;
+						//Replacing specific string character with guess character
+						strModify = strDisplayWord.substring(0, intCount7) + chrGuessLetter + strDisplayWord.substring(intCount7+1);
+						strDisplayWord = strModify;	
+						//Makes it so when guess is right, player doesn't loses points
+						blnRight = true;
 					}
-					if(blnRight == false){
-						intPoints--;
-						intFakePoints--;
-					}
-					//Checking if win
-					for(intCount9 = 0; intCount9 < strWord.length(); intCount9++){
-						strLetterUnderscore = strDisplayWord.substring(intCount9, intCount9+1);
-						if(strLetterUnderscore.equalsIgnoreCase("_")){
-							blnWin = false;
-						}	
-					}					
-					System.out.println("\n\nTRANSITION\n\n");
-					System.out.println("Win: " + blnWin);
+				}
+				if(blnRight == false){
+					intPoints--;
+					intFakePoints--;
+				}
+				//Checking if win
+				for(intCount8 = 0; intCount8 < strWord.length(); intCount8++){
+					strLetterUnderscore = strDisplayWord.substring(intCount8, intCount8+1);
+					if(strLetterUnderscore.equalsIgnoreCase("_")){
+						blnWin = false;
+					}	
+				}					
+				System.out.println("\n\nTRANSITION\n\n");
+				System.out.println("Win: " + blnWin);
+				
+				TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
 					
-					TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
-					
-					//This happens when you win
-					if(blnWin == true){
-						intWinCount++;
-						System.out.println("WinCount: " + intWinCount);
-						con.clear();
-						con.println(strDisplayWord);
-						con.println("You Win!!!!!!!!");
-						con.println("Do you want to play again?");
-						con.println("Type anything for yes");
-						con.println("Type m for no (return back to main menu)");
-						chrAgain = con.getChar();
-						if(chrAgain == 'm' || chrAgain == 'M'){
-							MainMenu(con);
-						}else{
-							intFakePoints = 0;
-						}		
-					}
-					//This happens when you lose	
-					if(intPoints == 0){
-						con.clear();
-						con.println("You have just reached 0 points.");
-						con.println("..................");
-						con.println("YOU LOST!");
-						con.println("Do you want to play again?");
-						con.println("Type anything for yes");
-						con.println("Type m for no (return back to main menu)");
-						chrAgain = con.getChar();
-						if(chrAgain == 'm' || chrAgain == 'M'){
-							MainMenu(con);
-						}else{
-							intFakePoints = 0;
-						}		
-							
+				//This happens when you win
+				if(blnWin == true){
+					intWinCount++;
+					System.out.println("WinCount: " + intWinCount);
+					con.clear();
+					con.println(strDisplayWord);
+					con.println("You Win!!!!!!!!");
+					con.println("Do you want to play again?");
+					con.println("Type anything for yes");
+					con.println("Type m for no (return back to main menu)");
+					chrAgain = con.getChar();
+					if(chrAgain == 'm' || chrAgain == 'M'){
+						MainMenu(con);
+					}else{
+						intFakePoints = 0;
 					}		
 				}
+				//This happens when you lose	
+				if(intPoints == 0){
+					con.clear();
+					con.println("You have just reached 0 points.");
+					con.println("..................");
+					con.println("YOU LOST!");
+					con.println("The word was: " + strWord);
+					con.println("Do you want to play again?");
+					con.println("Type anything for yes");
+					con.println("Type m for no (return back to main menu)");
+					chrAgain = con.getChar();
+					if(chrAgain == 'm' || chrAgain == 'M'){
+						MainMenu(con);
+					}else{
+						intFakePoints = 0;
+					}		
+				
+				}		
 			}
 		}	
 			
 	}	
-			
+	public static void AddTheme(Console con){
+		String strTheme;
+		String strWord = "";
+		
+		TextOutputFile themes = new TextOutputFile("themes.txt",true);
+		
+		con.println("What is the theme name, type '.txt' at the end of name");
+		strTheme = con.readLine();
+		themes.println(strTheme);
+		themes.close();
+		
+		TextOutputFile UserCreatedFile = new TextOutputFile(strTheme,true);
+		while(!strWord.equalsIgnoreCase("stop")){
+			con.clear();
+			con.println("Enter a word to the file: ");
+			con.println("Enter 'stop' to stop");
+			strWord = con.readLine();
+			if(!strWord.equalsIgnoreCase("stop")){
+				UserCreatedFile.println(strWord);
+			}	
+		}
+		con.println("Returning to main menu...");
+		MainMenu(con);
+	}			
 }
