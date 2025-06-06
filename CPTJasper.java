@@ -72,6 +72,11 @@ public class CPTJasper{
 			PlayGame(con);
 			
 		}else if(chrMenuInput == 'v' || chrMenuInput == 'V'){
+			//Goes to leaderboard screen
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
+			con.clear();
+			
 	
 		}else if(chrMenuInput == 'a' || chrMenuInput == 'A'){
 			//Goes to add theme screen
@@ -243,12 +248,22 @@ public class CPTJasper{
 		
 		//Setting up word for game
 		for(intGameCount = 0; intGameCount <= intWordCount; intGameCount++){
+			
+			//Setting up leaderboard file variable for later uses
+			TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
+			
+			
 			//If user reaches the end of the word list
 			if(intGameCount == intWordCount){
 				con.clear();
 				con.println("CONGRATULATIONS");
 				con.println("You've reached the end of the word list.");	
 				con.println("Returning back to main menu...");
+				//Printing data to leaderboard because end of game
+				leaderboard = new TextOutputFile("leaderboard.txt",true);
+				leaderboard.println(strName);
+				leaderboard.println(intWinCount);
+				leaderboard.close();
 				con.sleep(8000);
 				MainMenu(con);
 			}	
@@ -336,7 +351,7 @@ public class CPTJasper{
 				System.out.println("\n\nTRANSITION\n\n");
 				System.out.println("Win: " + blnWin);
 				
-				TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
+
 					
 				//This happens when you win
 				if(blnWin == true){
@@ -350,6 +365,11 @@ public class CPTJasper{
 					con.println("Type m for no (return back to main menu)");
 					chrAgain = con.getChar();
 					if(chrAgain == 'm' || chrAgain == 'M'){
+						//Printing data to leaderboard because end of game
+						leaderboard = new TextOutputFile("leaderboard.txt",true);
+						leaderboard.println(strName);
+						leaderboard.println(intWinCount);
+						leaderboard.close();
 						MainMenu(con);
 					}else{
 						intFakePoints = 0;
@@ -367,6 +387,11 @@ public class CPTJasper{
 					con.println("Type m for no (return back to main menu)");
 					chrAgain = con.getChar();
 					if(chrAgain == 'm' || chrAgain == 'M'){
+						//Printing data to leaderboard because end of game
+						leaderboard = new TextOutputFile("leaderboard.txt",true);
+						leaderboard.println(strName);
+						leaderboard.println(intWinCount);
+						leaderboard.close();
 						MainMenu(con);
 					}else{
 						intFakePoints = 0;
