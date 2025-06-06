@@ -266,7 +266,7 @@ public class CPTJasper{
 				leaderboard.println(strName);
 				leaderboard.println(intWinCount);
 				leaderboard.close();
-				con.sleep(8000);
+				con.sleep(5000);
 				MainMenu(con);
 			}	
 			intPoints = 0;
