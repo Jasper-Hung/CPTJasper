@@ -118,6 +118,7 @@ public class CPTJasper{
 			if(chrMenuInput == 'm' || chrMenuInput == 'M'){
 				MainMenu(con);
 			}	
+			
 		}
 	//End of method	
 	}
@@ -433,7 +434,7 @@ public class CPTJasper{
 		con.setDrawColor(Color.WHITE);
 		con.drawString("LEADERBOARD", 495, 10);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
-		con.drawString("Return to main menu (press m)", 900, 700);
+		con.drawString("Return to main menu (press m)", 1000, 675);
 		con.repaint();
 		int intBoardLoop = 0;
 		char chrReturnMenu;
