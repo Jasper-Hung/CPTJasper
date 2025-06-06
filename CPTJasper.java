@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------
-// Name: 		CPTJasper
-// Purpose: 	Create a Guess the Word Game
-// Author:		Hung J.
-// Created: 	May 23, 2025
+// Program Name: 	CPTJasper
+// Purpose: 		Create a Guess the Word Game
+// Author:			Hung J.
+// Created: 		May 23, 2025
 //----------------------------------------------------------------------
 
 import arc.*;
@@ -46,14 +46,16 @@ public class CPTJasper{
 		
 		//Starting up MainMenu with a method
 		MainMenu(con);
-		
+	//End of method	
 	}
-
 	public static void MainMenu(Console con){
 		//Main Menu Display
+		con.setDrawColor(Color.BLACK);
+		con.fillRect(0,0,1280,720);
 		con.clear();
 		
 		con.setDrawColor(Color.WHITE);
+		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 40));
 		con.drawString("Main Menu", 400, 100);
 		con.drawString("Play Game(p)", 400, 150);
 		con.drawString("View Leaderboard(v)", 400, 200);
@@ -76,8 +78,7 @@ public class CPTJasper{
 			con.setDrawColor(Color.BLACK);
 			con.fillRect(0,0,1280,720);
 			con.clear();
-			
-	
+			Leaderboard(con);
 		}else if(chrMenuInput == 'a' || chrMenuInput == 'A'){
 			//Goes to add theme screen
 			con.setDrawColor(Color.BLACK);
@@ -118,7 +119,7 @@ public class CPTJasper{
 				MainMenu(con);
 			}	
 		}
-		
+	//End of method	
 	}
 	public static void PlayGame(Console con){
 		//Starting Game Screen
@@ -400,7 +401,7 @@ public class CPTJasper{
 				}		
 			}
 		}	
-			
+	//End of Method		
 	}	
 	public static void AddTheme(Console con){
 		String strTheme;
@@ -425,5 +426,85 @@ public class CPTJasper{
 		}
 		con.println("Returning to main menu...");
 		MainMenu(con);
+		
+	//End of method	
 	}			
+	public static void Leaderboard(Console con){
+		con.setDrawColor(Color.WHITE);
+		con.drawString("LEADERBOARD", 495, 10);
+		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
+		con.drawString("Return to main menu (press m)", 900, 700);
+		con.repaint();
+		int intBoardLoop = 0;
+		char chrReturnMenu;
+		int intBoardCount = 0;
+		String strNameTemp;
+		String strScoreTemp;
+		TextInputFile leaderboard = new TextInputFile("leaderboard.txt");
+		
+		//Finding length of leaderboard
+		while(leaderboard.eof() == false){
+			strNameTemp = leaderboard.readLine();
+			strScoreTemp = leaderboard.readLine();
+			intBoardCount++;
+		}
+		leaderboard.close();	
+		
+		String strLeaderboard[][];
+		strLeaderboard = new String[intBoardCount][2];
+		
+		//Column 0 is name
+		//Column 1 is amount of wins
+
+		int intCount;
+		leaderboard = new TextInputFile("leaderboard.txt");
+		
+		//Putting data from leaderboard file to array
+		for(intCount = 0; intCount < intBoardCount; intCount++){
+			strLeaderboard[intCount][0] = leaderboard.readLine();
+			strLeaderboard[intCount][1]	= leaderboard.readLine();
+			System.out.println(strLeaderboard[intCount][0]);
+			System.out.println(strLeaderboard[intCount][1]);
+		}	
+		leaderboard.close();
+		
+		int intCount2;
+		int intCount3;
+		//Sorting leaderboard by score highest to lowest
+		for(intCount2 = 0; intCount2 < intBoardCount - 1; intCount2++){
+			for(intCount3 = 0; intCount3 < intBoardCount - 1 ; intCount3++){
+				//Converting string to integer to compare
+				if(Integer.parseInt(strLeaderboard[intCount3][1]) < Integer.parseInt(strLeaderboard[intCount3+1][1])){
+					System.out.println("SWAPPING");
+					//Swapping name
+					strNameTemp = strLeaderboard[intCount3][0];
+					strLeaderboard[intCount3][0] = strLeaderboard[intCount3+1][0];
+					strLeaderboard[intCount3+1][0] = strNameTemp;
+					//Swapping score
+					strScoreTemp = strLeaderboard[intCount3][1];
+					strLeaderboard[intCount3][1] = strLeaderboard[intCount3+1][1];
+					strLeaderboard[intCount3+1][1] = strScoreTemp;
+					
+				}
+			}		
+		}
+		int intCount4;
+		//Printing leaderboard
+		
+		for(intCount4 = 0; intCount4 < intBoardCount; intCount4++){
+			con.println(strLeaderboard[intCount4][0] + " - " +strLeaderboard[intCount4][1]);
+
+		}
+		//Return back to main menu
+		while(intBoardLoop == 0){
+			chrReturnMenu = con.getChar();
+			if(chrReturnMenu == 'm'){
+				MainMenu(con);
+			}else{
+				chrReturnMenu = con.getChar();
+			}		
+		}
+	//End of method	
+	}
+		
 }
