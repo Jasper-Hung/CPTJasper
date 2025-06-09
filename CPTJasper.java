@@ -421,6 +421,10 @@ public class CPTJasper{
 			con.println("Enter a word to the file: ");
 			con.println("Enter 'stop' to stop");
 			strWord = con.readLine();
+			if(strWord.equalsIgnoreCase("")){
+				con.println("You can not enter an empty word");
+				con.sleep(1000);	
+			}	
 			if(!strWord.equalsIgnoreCase("stop")){
 				UserCreatedFile.println(strWord);
 			}	

@@ -1,0 +1,17 @@
+hockey
+basketball
+football
+cricket
+soccer
+baseball
+tennis
+pickleball
+rugby
+golf
+badminton
+volleyball
+swimming
+track and field
+frisbee
+curling
+bowling
