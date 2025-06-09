@@ -132,6 +132,7 @@ public class CPTJasper{
 		String strGameChoice;
 		String strFile;
 		String strWord;
+		boolean blnFileCheck = false;
 		
 		con.println("What is your name?: ");
 		strName = con.readLine();
@@ -148,6 +149,23 @@ public class CPTJasper{
 		strGameChoice = con.readLine();
 		
 		Masterfile.close();
+		
+		Masterfile = new TextInputFile("themes.txt");
+		
+		//Checks if the file choice actually matches one of the files
+		while(Masterfile.eof() == false){
+			strFile = Masterfile.readLine();
+			if(strFile.equals(strGameChoice)){
+				blnFileCheck = true;
+			}	
+		}
+		//If invalid word
+		if(blnFileCheck == false){
+			con.println("Invalid choice...");
+			con.println("Sending you back to main menu!!!");
+			con.sleep(2000);
+			MainMenu(con);
+		}		
 		
 		con.clear();
 		
