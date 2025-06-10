@@ -55,13 +55,14 @@ public class CPTJasper{
 		con.clear();
 		
 		con.setDrawColor(Color.WHITE);
+		con.setDrawFont(new Font("SansSerif", Font.BOLD, 75));
+		con.drawString("MAIN MENU", 425, 50);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 40));
-		con.drawString("Main Menu", 400, 100);
-		con.drawString("Play Game(p)", 400, 150);
-		con.drawString("View Leaderboard(v)", 400, 200);
-		con.drawString("Add Theme (a)", 400, 250);
-		con.drawString("Help (h)", 400, 300);
-		con.drawString("Quit (q)", 400, 350);
+		con.drawString("Play Game(p)", 400, 200);
+		con.drawString("View Leaderboard(v)", 400, 300);
+		con.drawString("Add Theme (a)", 400, 400);
+		con.drawString("Help (h)", 400, 500);
+		con.drawString("Quit (q)", 400, 600);
 		con.repaint();
 	
 	
@@ -470,7 +471,7 @@ public class CPTJasper{
 	}			
 	public static void Leaderboard(Console con){
 		con.setDrawColor(Color.WHITE);
-		con.drawString("LEADERBOARD", 495, 10);
+		con.drawString("LEADERBOARD", 465, 10);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
 		con.drawString("Return to main menu (press m)", 950, 675);
 		con.repaint();
@@ -529,9 +530,19 @@ public class CPTJasper{
 		}
 		int intCount4;
 		//Printing leaderboard
+		String strName;
+		String strPlus = " - ";
+		String strScore;
+		con.setDrawFont(new Font("Dialog", Font.PLAIN, 30));
 		
 		for(intCount4 = 0; intCount4 < intBoardCount; intCount4++){
-			con.println(strLeaderboard[intCount4][0] + " - " +strLeaderboard[intCount4][1]);
+			//Prints name + score on to middle of screen
+			strName = strLeaderboard[intCount4][0];
+			strScore = strLeaderboard[intCount4][1];
+			con.drawString(strName, 300,(intCount4 + 2)* 40);
+			con.drawString(strPlus, 600,(intCount4 + 2)* 40);
+			con.drawString(strScore, 900,(intCount4 + 2)* 40);
+			con.repaint();
 
 		}
 		//Return back to main menu
