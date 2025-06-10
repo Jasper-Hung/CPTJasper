@@ -97,9 +97,10 @@ public class CPTJasper{
 			con.println("At zero points, you lose the game, if you guess the word before that, you win.");
 			con.println("GOOD LUCK");
 			con.println("(There's a secret in the main menu)");
-			con.println("(Find the hidden cheat username)");
 			con.println("(Press m to go back to main menu)");
-			chrMenuInput = con.getChar();
+			while(chrMenuInput != 'm'){
+				chrMenuInput = con.getChar();
+			}	
 			if(chrMenuInput == 'm' || chrMenuInput == 'M'){
 				MainMenu(con);
 			}	
@@ -114,12 +115,24 @@ public class CPTJasper{
 			con.println("Why did the electric car feel discriminated against?");
 			con.println("Because the rules weren't current.");
 			con.println("(Press m to go back to main menu)");
-			chrMenuInput = con.getChar();
+			while(chrMenuInput != 'm'){	
+				chrMenuInput = con.getChar();
+			}	
 			if(chrMenuInput == 'm' || chrMenuInput == 'M'){
 				MainMenu(con);
-			}	
+			}
+				
 			
-		}
+		}else{
+			//If user does not put in right letter
+			con.setDrawColor(Color.BLACK);
+			con.fillRect(0,0,1280,720);
+			con.clear();
+			con.println("INVALID LETTER");
+			con.println("Refreshing...");
+			con.sleep(1000);
+			MainMenu(con);	
+		}	
 	//End of method	
 	}
 	public static void PlayGame(Console con){
@@ -450,6 +463,7 @@ public class CPTJasper{
 			}	
 		}
 		con.println("Returning to main menu...");
+		con.sleep(1000);
 		MainMenu(con);
 		
 	//End of method	
@@ -458,7 +472,7 @@ public class CPTJasper{
 		con.setDrawColor(Color.WHITE);
 		con.drawString("LEADERBOARD", 495, 10);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
-		con.drawString("Return to main menu (press m)", 1000, 675);
+		con.drawString("Return to main menu (press m)", 950, 675);
 		con.repaint();
 		int intBoardLoop = 0;
 		char chrReturnMenu;
