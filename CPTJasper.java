@@ -331,7 +331,7 @@ public class CPTJasper{
 			String strLetterUnderscore;
 			boolean blnRight;
 			boolean blnWin;
-			char chrAgain;
+			char chrPlayAgain;
 			
 			//Actual Gameplay
 			while(intFakePoints > 0){
@@ -380,11 +380,12 @@ public class CPTJasper{
 					con.clear();
 					con.println(strDisplayWord);
 					con.println("You Win!!!!!!!!");
+					con.println("You have " + intWinCount + " wins so far.");
 					con.println("Do you want to play again?");
 					con.println("Type anything for yes");
 					con.println("Type m for no (return back to main menu)");
-					chrAgain = con.getChar();
-					if(chrAgain == 'm' || chrAgain == 'M'){
+					chrPlayAgain = con.getChar();
+					if(chrPlayAgain == 'm' || chrPlayAgain == 'M'){
 						//Printing data to leaderboard because end of game
 						leaderboard = new TextOutputFile("leaderboard.txt",true);
 						leaderboard.println(strName);
@@ -402,11 +403,12 @@ public class CPTJasper{
 					con.println("..................");
 					con.println("YOU LOST!");
 					con.println("The word was: " + strWord);
+					con.println("You have " + intWinCount + " wins so far.");
 					con.println("Do you want to play again?");
 					con.println("Type anything for yes");
 					con.println("Type m for no (return back to main menu)");
-					chrAgain = con.getChar();
-					if(chrAgain == 'm' || chrAgain == 'M'){
+					chrPlayAgain = con.getChar();
+					if(chrPlayAgain == 'm' || chrPlayAgain == 'M'){
 						//Printing data to leaderboard because end of game
 						leaderboard = new TextOutputFile("leaderboard.txt",true);
 						leaderboard.println(strName);
