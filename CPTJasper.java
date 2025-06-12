@@ -462,7 +462,7 @@ public class CPTJasper{
 		TextOutputFile UserCreatedFile = new TextOutputFile(strTheme,true);
 		while(!strWord.equalsIgnoreCase("stop")){
 			con.clear();
-			con.println("Enter a word to the file: ");
+			con.println("Enter a word to the file (Do not add extra spaces at end of word): ");
 			con.println("Enter 'stop' to stop");
 			strWord = con.readLine();
 			if(strWord.equalsIgnoreCase("")){
