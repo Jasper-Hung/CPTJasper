@@ -102,7 +102,7 @@ public class CPTJasper{
 			con.println("GOOD LUCK");
 			con.println("");
 			con.println("LEADERBOARD");
-			con.println("The leaderboard displays the top 8 people with the highest amount of wins that have played the game.");
+			con.println("The leaderboard displays the top 10 people with the highest amount of wins that have played the game.");
 			con.println("The wins are determined by how many words they guess correctly in a specific file.");
 			con.println("");
 			con.println("ADD THEME");
@@ -551,14 +551,16 @@ public class CPTJasper{
 		String strScore;
 		con.setDrawFont(new Font("Dialog", Font.PLAIN, 30));
 		
-		for(intCount4 = 0; intCount4 < 8; intCount4++){
-			//Prints top 8
+		for(intCount4 = 0; intCount4 < intBoardCount; intCount4++){
+			//Prints top 10
 			//Prints name + score on to middle of screen
-			strName = strLeaderboard[intCount4][0];
-			strScore = strLeaderboard[intCount4][1];
-			con.drawString(strName, 320,(intCount4 + 2)* 40);
-			con.drawString(strPlus, 640,(intCount4 + 2)* 40);
-			con.drawString(strScore, 960,(intCount4 + 2)* 40);
+			if(intCount4 < 10){		
+				strName = strLeaderboard[intCount4][0];
+				strScore = strLeaderboard[intCount4][1];
+				con.drawString(strName, 320,(intCount4 + 2)* 40);
+				con.drawString(strPlus, 640,(intCount4 + 2)* 40);
+				con.drawString(strScore, 960,(intCount4 + 2)* 40);
+			}
 			con.repaint();
 
 		}
