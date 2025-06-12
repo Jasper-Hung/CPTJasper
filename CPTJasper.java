@@ -1,8 +1,9 @@
 //----------------------------------------------------------------------
 // Author:				Jasper Hung
 // Program Name: 		CPTJasper
-// Date-Last-Modified: 	June 12th, 2025
-// Version Number:		2.1		
+// Creation Date:		May 23rd, 2025
+// Last Modified: 		June 12th, 2025
+// Version Number:		v2.1		
 //----------------------------------------------------------------------
 
 import arc.*;
