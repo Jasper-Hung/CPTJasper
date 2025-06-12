@@ -468,7 +468,10 @@ public class CPTJasper{
 		//Setting up leaderboard layout
 		con.setDrawColor(Color.WHITE);
 		con.drawLine(0, 75, 1280, 75);
-		con.drawString("LEADERBOARD", 500, 6);
+		con.drawString("LEADERBOARD", 500, 2);
+		con.setDrawFont(new Font("Dialog", Font.BOLD, 30));
+		con.drawString("Name",300,20);
+		con.drawString("Wins",940,20);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
 		con.drawString("Return to main menu (press m)", 950, 675);
 		con.repaint();
