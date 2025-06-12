@@ -459,6 +459,7 @@ public class CPTJasper{
 				UserCreatedFile.println(strWord);
 			}	
 		}
+		UserCreatedFile.close();
 		con.println("Returning to main menu...");
 		con.sleep(1000);
 		MainMenu(con);
