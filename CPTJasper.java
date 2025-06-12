@@ -563,9 +563,9 @@ public class CPTJasper{
 			if(intCount4 < 10){		
 				strName = strLeaderboard[intCount4][0];
 				strScore = strLeaderboard[intCount4][1];
-				con.drawString(strName, 320,(intCount4 + 2)* 40);
-				con.drawString(strPlus, 640,(intCount4 + 2)* 40);
-				con.drawString(strScore, 960,(intCount4 + 2)* 40);
+				con.drawString(strName, 320,(intCount4 + 2)* 50);
+				con.drawString(strPlus, 640,(intCount4 + 2)* 50);
+				con.drawString(strScore, 960,(intCount4 + 2)* 50);
 			}
 			con.repaint();
 		}
