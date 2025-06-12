@@ -108,7 +108,7 @@ public class CPTJasper{
 		}else if(chrMenuInput == 'q' || chrMenuInput == 'Q'){
 			//Quits game
 			con.closeConsole();
-		}else if(chrMenuInput == 'x' || chrMenuInput == 'X'){	
+		}else if(chrMenuInput == 's' || chrMenuInput == 'S'){	
 			//SECRET 
 			con.setDrawColor(Color.BLACK);
 			con.fillRect(0,0,1280,720);
