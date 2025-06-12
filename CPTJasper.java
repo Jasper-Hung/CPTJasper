@@ -154,6 +154,7 @@ public class CPTJasper{
 		con.clear();
 		
 		//Variables
+		//Will have multiple intCount variables for easier bug fixing
 		
 		String strName; 
 		String strGameChoice;
@@ -201,13 +202,12 @@ public class CPTJasper{
 		int intWordCount = 0;
 		
 		while(GameFile.eof() == false){
-			
 			strWord = GameFile.readLine();
 			System.out.println(strWord);
 			intWordCount++;
 			System.out.println(intWordCount);
-			
 		}	
+		
 		GameFile.close();
 		String strWords [][];
 		strWords = new String [intWordCount][2];
@@ -261,6 +261,7 @@ public class CPTJasper{
 			System.out.println(strWords[intCount4][0]);
 			System.out.println(strWords[intCount4][1]);	
 		}
+		
 		GameFile.close();
 		
 		int intLOWERCASE;
@@ -268,7 +269,6 @@ public class CPTJasper{
 		
 		//Converting all words to only lowercase
 		for(intLOWERCASE = 0; intLOWERCASE < intWordCount; intLOWERCASE++){
-			
 			strLowercase = strWords[intLOWERCASE][0];
 			strWords[intLOWERCASE][0] = strLowercase.toLowerCase();
 			System.out.println("\n\nTRANSITION\n\n");
@@ -294,7 +294,6 @@ public class CPTJasper{
 			TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
 			leaderboard.close();
 			
-			
 			//If user reaches the end of the word list
 			if(intGameCount == intWordCount){
 				con.clear();
@@ -309,6 +308,7 @@ public class CPTJasper{
 				con.sleep(5000);
 				MainMenu(con);
 			}	
+			
 			intPoints = 0;
 			intFakePoints = 0;
 			strDisplayWord = "";
@@ -327,6 +327,7 @@ public class CPTJasper{
 					intFakePoints = intFakePoints + 1;
 				}		
 			}
+			
 			chrGuess = new char[strWord.length()];
 			
 			System.out.println(intPoints);
@@ -440,8 +441,8 @@ public class CPTJasper{
 					}else{
 						intFakePoints = 0;
 					}		
-				
-				}		
+				}
+						
 			}
 		}	
 	//End of Method		
@@ -473,6 +474,7 @@ public class CPTJasper{
 				UserCreatedFile.println(strWord);
 			}	
 		}
+		
 		UserCreatedFile.close();
 		con.println("Returning to main menu...");
 		con.sleep(1000);
@@ -505,6 +507,7 @@ public class CPTJasper{
 			strScoreTemp = leaderboard.readLine();
 			intBoardCount++;
 		}
+		
 		leaderboard.close();	
 		
 		String strLeaderboard[][];
@@ -523,6 +526,7 @@ public class CPTJasper{
 			System.out.println(strLeaderboard[intCount][0]);
 			System.out.println(strLeaderboard[intCount][1]);
 		}	
+		
 		leaderboard.close();
 		
 		int intCount2;
@@ -545,6 +549,7 @@ public class CPTJasper{
 				}
 			}		
 		}
+		
 		int intCount4;
 		//Printing leaderboard
 		String strName;
@@ -563,8 +568,8 @@ public class CPTJasper{
 				con.drawString(strScore, 960,(intCount4 + 2)* 40);
 			}
 			con.repaint();
-
 		}
+		
 		//Return back to main menu
 		while(intBoardLoop == 0){
 			chrReturnMenu = con.getChar();
