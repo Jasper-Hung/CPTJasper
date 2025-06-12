@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Font;
 
-
 public class CPTJasper{
 	public static void main(String[] args){
 		Console con = new Console("Guess The Word",1280,720);
@@ -64,7 +63,6 @@ public class CPTJasper{
 		con.drawString("Help (h)", 400, 500);
 		con.drawString("Quit (q)", 400, 600);
 		con.repaint();
-	
 	
 		char chrMenuInput = con.getChar();
 		if(chrMenuInput == 'p' || chrMenuInput == 'P'){
@@ -123,7 +121,6 @@ public class CPTJasper{
 				MainMenu(con);
 			}
 				
-			
 		}else{
 			//If user does not put in right letter
 			con.setDrawColor(Color.BLACK);
@@ -235,8 +232,7 @@ public class CPTJasper{
 					//Swapping integer
 					strIntTemp = strWords[intCount3][1];
 					strWords[intCount3][1] = strWords[intCount3+1][1];
-					strWords[intCount3+1][1] = strIntTemp;
-					
+					strWords[intCount3+1][1] = strIntTemp;	
 				}
 			}	
 		}		
@@ -259,14 +255,9 @@ public class CPTJasper{
 			
 			strLowercase = strWords[intLOWERCASE][0];
 			strWords[intLOWERCASE][0] = strLowercase.toLowerCase();
-			
 			System.out.println("\n\nTRANSITION\n\n");
 			System.out.println(strWords[intLOWERCASE][0]);
 		}	
-	
-		
-		
-		
 		
 		int intGameCount;
 		int intPoints;
@@ -470,11 +461,14 @@ public class CPTJasper{
 	//End of method	
 	}			
 	public static void Leaderboard(Console con){
+		//Setting up leaderboard layout
 		con.setDrawColor(Color.WHITE);
-		con.drawString("LEADERBOARD", 465, 10);
+		con.drawLine(0, 75, 1280, 75);
+		con.drawString("LEADERBOARD", 465, 6);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
 		con.drawString("Return to main menu (press m)", 950, 675);
 		con.repaint();
+		
 		int intBoardLoop = 0;
 		char chrReturnMenu;
 		int intBoardCount = 0;
