@@ -10,3 +10,4 @@ Salmon
 Watermelon
 Eggplant
 Strawberry
+Papaya

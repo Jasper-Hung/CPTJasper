@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------
-// Program Name: 	CPTJasper
-// Purpose: 		Create a Guess the Word Game
-// Author:			Hung J.
-// Created: 		May 23, 2025
+// Author:				Jasper Hung
+// Program Name: 		CPTJasper
+// Date-Last-Modified: 	June 12th, 2025
+// Version Number:		2.1		
 //----------------------------------------------------------------------
 
 import arc.*;
@@ -93,13 +93,24 @@ public class CPTJasper{
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			//Help Menu
+			con.println("GAMEPLAY");
 			con.print("Guess the word is a game where you are given a word and you have to keep");
 			con.println(" on \nguessing the letters of the word until you get it or lose.");
 			con.print("You get an specific amount of points based on the amount of letters in the word");
 			con.println("\nand every time you guess wrong, you lose a point.");
 			con.println("At zero points, you lose the game, if you guess the word before that, you win.");
 			con.println("GOOD LUCK");
-			con.println("(There's a secret in the main menu)");
+			con.println("");
+			con.println("LEADERBOARD");
+			con.println("The leaderboard displays the top 8 people with the highest amount of wins that have played the game.");
+			con.println("The wins are determined by how many words they guess correctly in a specific file.");
+			con.println("");
+			con.println("ADD THEME");
+			con.println("To add your own list of words, go to the add theme tab.");
+			con.println("In this tab, you can create your own theme text file and add it to a masterlist.");
+			con.println("You may add as many words as you want into the file.");
+			con.println("");
+			con.println("PS:(There's a secret in the main menu)");
 			con.println("(Press m to go back to main menu)");
 			while(chrMenuInput != 'm'){
 				chrMenuInput = con.getChar();
@@ -442,9 +453,11 @@ public class CPTJasper{
 		
 		con.println("What is the theme name, type '.txt' at the end of name");
 		strTheme = con.readLine();
+		//Prints chosen theme name to the masterlist
 		themes.println(strTheme);
 		themes.close();
 		
+		//User fills up their theme with words
 		TextOutputFile UserCreatedFile = new TextOutputFile(strTheme,true);
 		while(!strWord.equalsIgnoreCase("stop")){
 			con.clear();
@@ -538,7 +551,8 @@ public class CPTJasper{
 		String strScore;
 		con.setDrawFont(new Font("Dialog", Font.PLAIN, 30));
 		
-		for(intCount4 = 0; intCount4 < intBoardCount; intCount4++){
+		for(intCount4 = 0; intCount4 < 8; intCount4++){
+			//Prints top 8
 			//Prints name + score on to middle of screen
 			strName = strLeaderboard[intCount4][0];
 			strScore = strLeaderboard[intCount4][1];
