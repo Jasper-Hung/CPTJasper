@@ -280,6 +280,7 @@ public class CPTJasper{
 			
 			//Setting up leaderboard file variable for later uses
 			TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
+			leaderboard.close();
 			
 			
 			//If user reaches the end of the word list
