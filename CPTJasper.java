@@ -49,43 +49,47 @@ public class CPTJasper{
 	}
 	public static void MainMenu(Console con){
 		//Main Menu Display
-		con.setDrawColor(Color.BLACK);
+		con.setDrawColor(Color.DARK_GRAY);
 		con.fillRect(0,0,1280,720);
 		con.clear();
 		
 		con.setDrawColor(Color.WHITE);
+		con.drawLine(350,135,925,135);
+		con.drawLine(350,135,350,650);
+		con.drawLine(350,650,925,650);
+		con.drawLine(925,135,925,650);
 		con.setDrawFont(new Font("SansSerif", Font.BOLD, 75));
-		con.drawString("MAIN MENU", 425, 50);
+		con.drawString("MAIN MENU", 425, 20);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 40));
-		con.drawString("Play Game(p)", 400, 200);
-		con.drawString("View Leaderboard(v)", 400, 300);
-		con.drawString("Add Theme (a)", 400, 400);
-		con.drawString("Help (h)", 400, 500);
-		con.drawString("Quit (q)", 400, 600);
+		con.drawString("Play Game(p)", 400, 150);
+		con.drawString("View Leaderboard(v)", 400, 250);
+		con.drawString("Add Theme (a)", 400, 350);
+		con.drawString("Help (h)", 400, 450);
+		con.drawString("Quit (q)", 400, 550);
 		con.repaint();
 	
 		char chrMenuInput = con.getChar();
 		if(chrMenuInput == 'p' || chrMenuInput == 'P'){
 			//Goes to starting game screen
-			con.setDrawColor(Color.BLACK);
+			con.setDrawColor(Color.DARK_GRAY);
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			PlayGame(con);
 			
 		}else if(chrMenuInput == 'v' || chrMenuInput == 'V'){
 			//Goes to leaderboard screen
-			con.setDrawColor(Color.BLACK);
+			con.setDrawColor(Color.DARK_GRAY);
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			Leaderboard(con);
 		}else if(chrMenuInput == 'a' || chrMenuInput == 'A'){
 			//Goes to add theme screen
-			con.setDrawColor(Color.BLACK);
+			con.setDrawColor(Color.DARK_GRAY);
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			AddTheme(con);
 		}else if(chrMenuInput == 'h' || chrMenuInput == 'H'){	
-			con.setDrawColor(Color.BLACK);
+			con.setDrawColor(Color.DARK_GRAY);
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			//Help Menu
@@ -108,7 +112,7 @@ public class CPTJasper{
 			con.closeConsole();
 		}else if(chrMenuInput == 's' || chrMenuInput == 'S'){	
 			//SECRET 
-			con.setDrawColor(Color.BLACK);
+			con.setDrawColor(Color.DARK_GRAY);
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			con.println("Why did the electric car feel discriminated against?");
@@ -123,7 +127,7 @@ public class CPTJasper{
 				
 		}else{
 			//If user does not put in right letter
-			con.setDrawColor(Color.BLACK);
+			con.setDrawColor(Color.DARK_GRAY);
 			con.fillRect(0,0,1280,720);
 			con.clear();
 			con.println("INVALID LETTER");
@@ -464,7 +468,7 @@ public class CPTJasper{
 		//Setting up leaderboard layout
 		con.setDrawColor(Color.WHITE);
 		con.drawLine(0, 75, 1280, 75);
-		con.drawString("LEADERBOARD", 465, 6);
+		con.drawString("LEADERBOARD", 500, 6);
 		con.setDrawFont(new Font("SansSerif", Font.PLAIN, 20));
 		con.drawString("Return to main menu (press m)", 950, 675);
 		con.repaint();
@@ -533,9 +537,9 @@ public class CPTJasper{
 			//Prints name + score on to middle of screen
 			strName = strLeaderboard[intCount4][0];
 			strScore = strLeaderboard[intCount4][1];
-			con.drawString(strName, 300,(intCount4 + 2)* 40);
-			con.drawString(strPlus, 600,(intCount4 + 2)* 40);
-			con.drawString(strScore, 900,(intCount4 + 2)* 40);
+			con.drawString(strName, 320,(intCount4 + 2)* 40);
+			con.drawString(strPlus, 640,(intCount4 + 2)* 40);
+			con.drawString(strScore, 960,(intCount4 + 2)* 40);
 			con.repaint();
 
 		}
